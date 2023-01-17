@@ -1,0 +1,38 @@
+{include file='public@inc/head'}
+<div class="page">
+    <div class="container">
+        <h1 class="title">自定义一个备案号</h1>
+        <div style="display:flex;justify-content: center;align-items: center;">
+            <input type="text" id="keyword" placeholder="输入你想选择的号码" maxlength="18" class="search">
+        </div>
+        <div id="tip_list">
+        </div>
+    </div>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script type="application/javascript">
+        var key_input = document.getElementById("keyword");
+        $("#keyword").keydown(function (e){
+            if (e.keyCode == 13){
+                if(key_input.value == "") document.getElementById("tip_list").innerHTML = "<h5 class=\"tip\">不能选择空字符串</h5>";
+                else {
+                    var xhr = new XMLHttpRequest();
+                    xhr.timeout = 4000;
+                    xhr.ontimeout = function (event) {
+                        document.getElementById("tip_list").innerHTML = "<h5 class=\"tip\">请求超时</h5>";
+                    }
+                    xhr.open("GET", "/user.php/register/number_can?number=" + key_input.value);
+                    xhr.send();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            if (xhr.responseText === "0") document.getElementById("tip_list").innerHTML = "<h5 class=\"tip\" style='color: whitesmoke;'>该号码可以选择，<a href='/user.php/register/info?n=" + key_input.value + "'>下一步</a></h5>";
+                            else if (xhr.responseText === "1") document.getElementById("tip_list").innerHTML = "<h5 class=\"tip\">该备案号已经拥有</h5>";
+                        } else if (xhr.readyState == 4) {
+                            document.getElementById("tip_list").innerHTML = "<h5 class=\"tip\">请求出错(" + xhr.status + ")</h5>";
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</div>
+{include file='public@inc/foot'}

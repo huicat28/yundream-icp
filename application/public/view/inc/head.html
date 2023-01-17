@@ -1,0 +1,12 @@
+{php}
+    use think\facade\Session;
+    $IS_LOGIN = Session::has('login');
+{/php}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$PAGE_TITLE | default=''} - {$SETTING_SITENAME}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="bg" style="background-image: url('{$SETTING_BGURL}');">

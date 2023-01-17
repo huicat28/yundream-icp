@@ -1,0 +1,157 @@
+{include file='public/head'}
+{include file='public/nav'}
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>主页</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-warning">
+                        <i class="far fa-file"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4>我的备案</h4>
+                        </div>
+                        <div class="card-body">
+                            {$icp_count} 个
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-7 col-sm-7 col-12">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-primary">
+                        <i class="far fa-clock"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4>加入时间</h4>
+                        </div>
+                        <div class="card-body">
+                            {php}echo intval(($USER["join_time"]-time()) / 86400);{/php} 天
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>备案状态</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">{$icp_1}</div>
+                            <div class="font-weight-bold mb-1">正常</div>
+                            <div class="progress" data-height="3" style="height: 3px;">
+                                <div class="progress-bar" role="progressbar" data-width="{if($icp_count==0)}0{else/}{php}echo intval($icp_1 / $icp_count * 100);{/php}{/if}%" aria-valuenow="{if($icp_count==0)}0{else/}{php}echo intval($icp_1 / $icp_count * 100);{/php}{/if}" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">{$icp_2}</div>
+                            <div class="font-weight-bold mb-1">失效</div>
+                            <div class="progress" data-height="3" style="height: 3px;">
+                                <div class="progress-bar" role="progressbar" data-width="{if($icp_count==0)}0{else/}{php}echo intval($icp_2 / $icp_count * 100);{/php}{/if}%" aria-valuenow="{if($icp_count==0)}0{else/}{php}echo intval($icp_2 / $icp_count * 100);{/php}{/if}" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">{$icp_3}</div>
+                            <div class="font-weight-bold mb-1">违规</div>
+                            <div class="progress" data-height="3" style="height: 3px;">
+                                <div class="progress-bar" role="progressbar" data-width="{if($icp_count==0)}0{else/}{php}echo intval($icp_3 / $icp_count * 100);{/php}{/if}%" aria-valuenow="{if($icp_count==0)}0{else/}{php}echo intval($icp_3 / $icp_count * 100);{/php}{/if}" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">{$icp_4}</div>
+                            <div class="font-weight-bold mb-1">待审核</div>
+                            <div class="progress" data-height="3" style="height: 3px;">
+                                <div class="progress-bar" role="progressbar" data-width="{if($icp_count==0)}0{else/}{php}echo intval($icp_4 / $icp_count * 100);{/php}{/if}%" aria-valuenow="{if($icp_count==0)}0{else/}{php}echo intval($icp_4 / $icp_count * 100);{/php}{/if}" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">{$icp_5}</div>
+                            <div class="font-weight-bold mb-1">审核未通过</div>
+                            <div class="progress" data-height="3" style="height: 3px;">
+                                <div class="progress-bar" role="progressbar" data-width="{if($icp_count==0)}0{else/}{php}echo intval($icp_5 / $icp_count * 100);{/php}{/if}%" aria-valuenow="{if($icp_count==0)}0{else/}{php}echo intval($icp_5 / $icp_count * 100);{/php}{/if}" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">{$icp_0}</div>
+                            <div class="font-weight-bold mb-1">已删除，备案号保留</div>
+                            <div class="progress" data-height="3" style="height: 3px;">
+                                <div class="progress-bar" role="progressbar" data-width="{if($icp_count==0)}0{else/}{php}echo intval($icp_0 / $icp_count * 100);{/php}{/if}%" aria-valuenow="{if($icp_count==0)}0{else/}{php}echo intval($icp_0 / $icp_count * 100);{/php}{/if}" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">{php}echo $icp_count - $icp_1 - $icp_2 - $icp_3 - $icp_4 - $icp_5 - $icp_0;{/php}</div>
+                            <div class="font-weight-bold mb-1">其他</div>
+                            <div class="progress" data-height="3" style="height: 3px;">
+                                <div class="progress-bar" role="progressbar" data-width="{if($icp_count==0)}0{else/}{php}echo intval(($icp_count - $icp_1 - $icp_2 - $icp_3 - $icp_4 - $icp_5 - $icp_0) / $icp_count * 100);{/php}{/if}%" aria-valuenow="{if($icp_count==0)}0{else/}{php}echo intval(($icp_count - $icp_1 - $icp_2 - $icp_3 - $icp_4 - $icp_5 - $icp_0) / $icp_count * 100);{/php}{/if}" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>备案服务状态</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">0</div>
+                            <div class="font-weight-bold mb-1">200</div>
+                            <div class="progress" data-height="3" style="height: 3px;">
+                                <div class="progress-bar" role="progressbar" data-width="0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">0</div>
+                            <div class="font-weight-bold mb-1">404</div>
+                            <div class="progress" data-height="3" style="height: 3px;">
+                                <div class="progress-bar" role="progressbar" data-width="0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">0</div>
+                            <div class="font-weight-bold mb-1">403</div>
+                            <div class="progress" data-height="3" style="height: 3px;">
+                                <div class="progress-bar" role="progressbar" data-width="0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">0</div>
+                            <div class="font-weight-bold mb-1">502</div>
+                            <div class="progress" data-height="3" style="height: 3px;">
+                                <div class="progress-bar" role="progressbar" data-width="0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">0</div>
+                            <div class="font-weight-bold mb-1">503</div>
+                            <div class="progress" data-height="3" style="height: 3px;">
+                                <div class="progress-bar" role="progressbar" data-width="0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{include file='public/foot'}

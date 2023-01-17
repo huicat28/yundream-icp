@@ -1,0 +1,57 @@
+{include file='public@inc/head'}
+<div class="page">
+    <div class="container">
+        <div class="result">
+            <h2 class="title">填写备案信息</h2>
+            <h6 class="title">这些信息用于设置备案</h6>
+            <div>
+                <div>
+                    <label for="number">ICP备案号</label>
+                    <input type="text" id="number" disabled value="{$number}">
+                </div>
+                <div>
+                    <label for="userid">用户ID</label>
+                    <input type="text" id="userid" disabled value="{$userid}">
+                </div>
+                <div>
+                    <label for="site_name">网站名称</label>
+                    <input type="text" id="site_name" maxlength="12">
+                </div>
+                <div>
+                    <label for="site_desc">网站描述</label>
+                    <input type="text" id="site_desc" maxlength="20">
+                </div>
+                <div>
+                    <label for="main_url">网站首页链接（以http://或https://开头）</label>
+                    <input type="url" id="main_url" maxlength="30">
+                </div>
+                <div>
+                    <label for="main_url">网站备案链接（无需填写http://或https://）</label>
+                    <input type="text" id="icp_url" maxlength="30">
+                </div>
+                <div>
+                    <label for="main_url">网站所有人</label>
+                    <input type="text" id="icp_owner" maxlength="18">
+                </div>
+                <button type="button" onclick="reg()">申请</button>
+            </div>
+            <div id="tip_list"></div>
+        </div>
+        <script type="application/javascript">
+            function reg(){
+                var site_name = document.getElementById("site_name").value;
+                var site_desc = document.getElementById("site_desc").value;
+                var main_url = document.getElementById("main_url").value;
+                var icp_url = document.getElementById("icp_url").value;
+                var icp_owner = document.getElementById("icp_owner").value;
+                fetch("/user.php/register/end_check",{method:"post",headers: {"Content-Type":"application/x-www-form-urlencoded"},body:`sitename=${site_name}&&sitedesc=${site_desc}&&icpowner=${icp_owner}&&icpurl=${icp_url}&&mainurl=${main_url}&&number={$number}&&userid={$userid}`})
+                    .then(res => res.text())
+                    .then(function (res){
+                        if (res === "ok") window.open("/where?keyword={$number}","_self");
+                        else document.getElementById("tip_list").innerHTML = "<h5 class=\"tip\">" + res + "</h5>";
+                    })
+            }
+        </script>
+    </div>
+</div>
+{include file='public@inc/foot'}

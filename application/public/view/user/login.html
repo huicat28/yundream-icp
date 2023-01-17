@@ -1,0 +1,36 @@
+{include file='public@inc/head'}
+<button class="back_btn" onclick="window.open('/','_self')">←</button>
+<div class="page">
+    <div class="container">
+        <div class="result" style="text-align: center">
+            <h2 class="title">登录</h2>
+            <h4>如果你还没有账号，那就 <a href="/user.php/register">☞ 注册一个吧 ☜</a></h4>
+            <br />
+            <div>
+                <div>
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" maxlength="12">
+                </div>
+                <div>
+                    <label for="password">密码</label>
+                    <input type="password" id="password" maxlength="18">
+                </div>
+                <div id="tip_list"></div>
+                <button type="button" onclick="send_login()">登录</button>
+            </div>
+            <script type="application/javascript">
+                function send_login(){
+                    var username = document.getElementById("username").value;
+                    var password = document.getElementById("password").value;
+                    fetch("/user.php/login/check",{method:"post",headers: {"Content-Type":"application/x-www-form-urlencoded"},body:`password=${password}&&username=${username}`})
+                        .then(res => res.text())
+                        .then(function (res){
+                            if (res === "ok") window.open("/user.php","_self");
+                            else document.getElementById("tip_list").innerHTML = "<h5 class=\"tip\">" + res + "</h5>";
+                        })
+                }
+            </script>
+        </div>
+    </div>
+</div>
+{include file='public@inc/foot'}
