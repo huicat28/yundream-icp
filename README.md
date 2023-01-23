@@ -4,13 +4,14 @@
 [![Stars](https://badgen.net/github/stars/huicat28/yundream-icp?style=flat-square)](https://github.com/huicat28/yundream-icp)
 [![Latest Stable Version](https://badgen.net/github/release/huicat28/yundream-icp?style=flat-square)](https://github.com/huicat28/yundream-icp/releases)
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D5.6-8892BF.svg?style=flat-square)](http://www.php.net/)
-[![License](https://badgen.net/github/license/huicat28/yundream-icp?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 ## 源码介绍
 
 ![介绍图](https://github.com/huicat28/yundream-icp/blob/master/README.png?raw=true)
 
 本源码为模仿萌国ICP备案系统，目的是让各位可以自己搭建一个自己的“ICP备案”。
+
+本源码完全开源免费，如果您是付费获得的此源码，您就是被骗了。
 
 ## 安装教程
 
@@ -89,9 +90,9 @@
 
 云梦次元ICP备案系统遵循Apache2开源协议发布，并提供免费使用。
 
-版权所有Copyright © 2023 by 云梦次元
+版权所有Copyright © 2023 by 云梦次元（http://www.whitedream.cn）
 
-
+---
 
 本项目包含的第三方源码：
 
