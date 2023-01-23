@@ -16,6 +16,6 @@ namespace think;
 require __DIR__ . '/../thinkphp/base.php';
 
 // 支持事先使用静态方法设置Request对象和Config对象
-define("SYS_VERSION","v1.1.1");
+define("SYS_VERSION","v1.1.3");
 // 执行应用并响应
 Container::get('app')->bind("index/index")->run()->send();
