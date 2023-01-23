@@ -13,6 +13,48 @@ h1,h2,h3,h4,h5,h6,label,input,span,p,a,div{
 input{
     outline: none;
 }
+.beautiful-input{
+    padding: 2px;
+    border: none;
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter: blur(3px);
+    color: white;
+    margin-bottom: 4px;
+    transition: all 200ms;
+}
+.beautiful-input:hover{
+    backdrop-filter: blur(6px);
+    background-color: rgba(255,255,255,0.05);
+    padding: 4px;
+    transition: all 200ms;
+}
+.beautiful-input:focus{
+    backdrop-filter: blur(7px);
+    background-color: rgba(255,255,255,0.03);
+    padding: 6px;
+    transition: all 200ms;
+}
+.beautiful-button{
+    border-radius: 3px;
+    padding: 6px;
+    color: white;
+    border: none;
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter: blur(5px);
+    transition: all 200ms;
+}
+.beautiful-button:hover{
+    padding: 8px;
+    background-color: rgba(255,255,255,0.3);
+    transition: all 200ms;
+}
+.beautiful-button:active{
+    padding: 6px;
+    font-size: 0.125rem;
+    background-color: rgba(255,255,255,0.35);
+    backdrop-filter: blur(4px);
+    transition: all 200ms;
+}
 a {
     text-decoration: none;
     color: #70c4f1;
