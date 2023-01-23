@@ -102,14 +102,24 @@
                     <li class="menu-header">备案管理</li>
                     <li class="{if ($NAVID==1)}active{/if}"><a class="nav-link" href="/user.php/icp"><i class="fas fa-file"></i><span>所有备案</span></a></li>
                     <li class="{if ($NAVID==2)}active{/if}"><a class="nav-link" href="/user.php/icp/add"><i class="fas fa-circle"></i><span>新增备案</span></a></li>
-                    <li class="menu-header">其他</li>
-                    <li class="{if ($NAVID==3)}active{/if}"><a class="nav-link" href="/user.php/settings"><i class="fas fa-cog"></i><span>个人设置</span></a></li>
+                    {if !Session::has("admin")}
+                        <li class="menu-header">其他</li>
+                        <li class="{if ($NAVID==3)}active{/if}"><a class="nav-link" href="/user.php/settings"><i class="fas fa-cog"></i><span>个人设置</span></a></li>
+                    {/if}
                     {if ($USER["u_type"] > 0)}
-                        <div class="mt-4 mb-4 p-3">
-                            <a href="/admin.php" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                                <i class="fas fa-rocket"></i> 管理员入口
-                            </a>
-                        </div>
+                        {if Session::has("admin")}
+                            <div class="mt-4 mb-4 p-3">
+                                <a href="/admin.php?r" class="btn btn-success btn-lg btn-block btn-icon-split">
+                                    <i class="fas fa-rocket"></i> 降权到普通用户
+                                </a>
+                            </div>
+                        {else /}
+                            <div class="mt-4 mb-4 p-3">
+                                <a href="/admin.php" class="btn btn-danger btn-lg btn-block btn-icon-split">
+                                    <i class="fas fa-rocket"></i> 提权到管理员
+                                </a>
+                            </div>
+                        {/if}
                     {/if}
                 </ul>
             </aside>

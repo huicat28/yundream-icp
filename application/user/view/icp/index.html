@@ -17,6 +17,9 @@
                             <table class="table table-striped">
                                 <tr>
                                     <th>#</th>
+                                    {if Session::has("admin")}
+                                    <th>用户账户ID</th>
+                                    {/if}
                                     <th>网站名称</th>
                                     <th>网站主页</th>
                                     <th>备案域名</th>
@@ -27,9 +30,28 @@
                                     <th>操作</th>
                                 </tr>
                                 {foreach $icp_list as $id=>$key}
-                                    {if ($key.is_remove==0)}
+                                    {if Session::has("admin")}
+                                        <tr {if ($key.is_remove!=0)}style="color:#54b3e5;"{/if}>
+                                            <td>{$id}</td>
+                                            <td><a href="#">{$key.by_user}</a></td>
+                                            <td>{$key.site_name}</td>
+                                            <td><a href="{$key.site_main_url}">{$key.site_main_url}</a></td>
+                                            <td>{$key.site_icp_url}</td>
+                                            <td>{$key.site_owner}</td>
+                                            <td><div class="badge">{$key.icp_status}</div></td>
+                                            <td>{php}echo date('Y-m-d H:i:s',$key["icp_time"]);{/php}</td>
+                                            <td>{$key.icp_number}</td>
+                                            {if ($key.is_remove==0)}
+                                                <td><button onclick="del({$key.icp_number})" class="btn btn-danger">撤销备案</button></td>
+                                            {else /}
+                                                <td><a href="/user.php/icp/re?id={$key.icp_number}" class="btn btn-success">恢复备案</a></td>
+                                            {/if}
+                                        </tr>
+                                    {else /}
+                                        {if ($key.is_remove==0)}
                                         <tr>
                                             <td>{$id}</td>
+                                            <td><a href="#">{$key.by_user}</a></td>
                                             <td>{$key.site_name}</td>
                                             <td><a href="{$key.site_main_url}">{$key.site_main_url}</a></td>
                                             <td>{$key.site_icp_url}</td>
@@ -39,6 +61,7 @@
                                             <td>{$key.icp_number}</td>
                                             <td><button onclick="del({$key.icp_number})" class="btn btn-danger">撤销备案</button></td>
                                         </tr>
+                                        {/if}
                                     {/if}
                                 {/foreach}
                             </table>

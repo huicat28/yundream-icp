@@ -22,12 +22,29 @@
                     </div>
                 </div>
             </div>
+            {if Session::has("admin")}
+                <div class="col-lg-4 col-md-7 col-sm-7 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-danger">
+                            <i class="fas fa-circle"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>欢迎</h4>
+                            </div>
+                            <div class="card-body">
+                                管理员!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {/if}
         </div>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>备案状态</h4>
+                        <h4>{if Session::has("admin")}全站{/if}备案状态</h4>
                     </div>
                     <div class="card-body">
                         <div class="mb-4">
@@ -91,7 +108,7 @@
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>备案服务状态</h4>
+                        <h4>{if Session::has("admin")}全站{/if}备案服务状态</h4>
                     </div>
                     <div class="card-body">
                         <div class="mb-4">
