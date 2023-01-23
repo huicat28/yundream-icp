@@ -16,7 +16,8 @@
 return [
     // 模板引擎类型 支持 php think 支持扩展
     'type'         => 'Think',
-    // 默认模板渲染规则 1 解析为小写+下划线 2 全部转换小写 3 保持操作方法
+    // 默认模板渲染规则 1 解析为小写+
+    //        $this->assign("icp_count",count(Db::table("icp_list")->where("by_user",Session::get("login"))->select()));下划线 2 全部转换小写 3 保持操作方法
     'auto_rule'    => 1,
     // 模板路径
     'view_path'    => '',
