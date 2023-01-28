@@ -26,9 +26,6 @@ h1,h2,h3,h4,h5,h6,label,input,span,p,a,div{
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(162, 162, 163);
 }
-body {
-    overflow: hidden;
-}
 input{
     outline: none;
 }
