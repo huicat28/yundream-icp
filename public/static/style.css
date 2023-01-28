@@ -10,6 +10,25 @@ h1,h2,h3,h4,h5,h6,label,input,span,p,a,div{
     padding: 0;
     box-sizing: border-box;
 }
+/*滚动条重写*/
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(241, 242, 243, 0%);
+    border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(201, 201, 202);
+    border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(162, 162, 163);
+}
+body {
+    overflow: hidden;
+}
 input{
     outline: none;
 }
@@ -84,12 +103,7 @@ a:active{
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    background-size: 110vw;
-    transition: all 500ms;
-}
-.bg:hover{
-    background-size: 100vw;
-    transition: all 500ms;
+    background-size: cover;
 }
 .tip{
     color: #f64d4d;
@@ -167,6 +181,7 @@ input::-webkit-input-placeholder{
     backdrop-filter: blur(2px);
     border-radius: 10px;
     transition: all 200ms;
+    overflow-y: auto;
 }
 .result:hover{
     box-shadow: 0 0 10px 0 rgba(51, 51, 51, 0.43);
@@ -174,13 +189,16 @@ input::-webkit-input-placeholder{
     transition: all 200ms;
 }
 .info {
+    min-width: 240px;
     border: #e1e1e1 solid 1px;
     border-radius: 10px;
 }
 .info .info-item~.info-item {
+    min-width: 239px;
     border-top: #e1e1e1 solid 1px;
 }
 .info .info-item {
+    min-width: 239px;
     padding: 0;
     display: flex;
 }
