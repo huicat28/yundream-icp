@@ -32,4 +32,20 @@ class Settings extends Controller
         Db::table("icp_users")->where("id",Session::get("login"))->update(["displayname"=>$displayname,"u_description"=>$description,"email"=>$email]);
         return 'ok';
     }
+    public function check_u($u){
+        if(count(Db::table("icp_users")->where("username",$u)->select()) > 0) return "1";
+        else return "0";
+    }
+    public function update_u($u){
+        if(!$this->check_u($u)){
+            Db::table("icp_users")->where("id",Session::get("login"))->update(["username"=>$u]);
+            return "1";
+        }else return "0";
+    }
+    public function update_p($o,$p){
+        if(Db::table("icp_users")->where("id",Session::get("login"))->value("password") == md5($o)){
+            Db::table("icp_users")->where("id",Session::get("login"))->update(["password"=>md5($p)]);
+            return "1";
+        }else return "0";
+    }
 }
