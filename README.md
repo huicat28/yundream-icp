@@ -5,6 +5,8 @@
 [![Latest Stable Version](https://badgen.net/github/release/huicat28/yundream-icp?style=flat-square)](https://github.com/huicat28/yundream-icp/releases)
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D5.6-8892BF.svg?style=flat-square)](http://www.php.net/)
 
+### 提示：本系统仅能用于娱乐性质！！！！！
+
 ## 源码介绍
 
 ![介绍图](https://github.com/huicat28/yundream-icp/blob/master/README.png?raw=true)
