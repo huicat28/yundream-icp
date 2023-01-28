@@ -73,6 +73,7 @@
                     <div class="d-sm-none d-lg-inline-block">{$USER.displayname}</div></a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-title">用户名：{$USER.username}</div>
+                        <div class="dropdown-title">用户权限：{if $USER.u_type > 0}管理员{else /}普通用户{/if}</div>
                         <div class="dropdown-title">加入时间：{php}echo date('Y-m-d H:i:s',$USER["join_time"]);{/php}</div>
                         <a href="/user.php/icp" class="dropdown-item has-icon">
                             <i class="fas fa-bolt"></i> 我的备案列表
@@ -80,6 +81,11 @@
                         <a href="/user.php/settings" class="dropdown-item has-icon">
                             <i class="fas fa-cog"></i> 个人设置
                         </a>
+                        {if $USER.u_type > 0}
+                            <a href="/admin.php" class="dropdown-item has-icon">
+                                <i class="fas fa-h-square"></i> 管理员入口
+                            </a>
+                        {/if}
                         <div class="dropdown-divider"></div>
                         <a href="/user.php/login/loginout" class="dropdown-item has-icon text-danger">
                             <i class="fas fa-sign-out-alt"></i> 登出
@@ -102,24 +108,14 @@
                     <li class="menu-header">备案管理</li>
                     <li class="{if ($NAVID==1)}active{/if}"><a class="nav-link" href="/user.php/icp"><i class="fas fa-file"></i><span>所有备案</span></a></li>
                     <li class="{if ($NAVID==2)}active{/if}"><a class="nav-link" href="/user.php/icp/add"><i class="fas fa-circle"></i><span>新增备案</span></a></li>
-                    {if !Session::has("admin")}
-                        <li class="menu-header">其他</li>
-                        <li class="{if ($NAVID==3)}active{/if}"><a class="nav-link" href="/user.php/settings"><i class="fas fa-cog"></i><span>个人设置</span></a></li>
-                    {/if}
+                    <li class="menu-header">其他</li>
+                    <li class="{if ($NAVID==3)}active{/if}"><a class="nav-link" href="/user.php/settings"><i class="fas fa-cog"></i><span>个人设置</span></a></li>
                     {if ($USER["u_type"] > 0)}
-                        {if Session::has("admin")}
-                            <div class="mt-4 mb-4 p-3">
-                                <a href="/admin.php?r" class="btn btn-success btn-lg btn-block btn-icon-split">
-                                    <i class="fas fa-rocket"></i> 降权到普通用户
-                                </a>
-                            </div>
-                        {else /}
-                            <div class="mt-4 mb-4 p-3">
-                                <a href="/admin.php" class="btn btn-danger btn-lg btn-block btn-icon-split">
-                                    <i class="fas fa-rocket"></i> 提权到管理员
-                                </a>
-                            </div>
-                        {/if}
+                        <div class="mt-4 mb-4 p-3">
+                            <a href="/admin.php" class="btn btn-success btn-lg btn-block btn-icon-split">
+                                <i class="fas fa-rocket"></i> 管理员入口
+                            </a>
+                        </div>
                     {/if}
                 </ul>
             </aside>

@@ -16,23 +16,13 @@ class Index extends Controller
         }
 
         $this->assign("USER",Db::table("icp_users")->where("id",Session::get("login"))->find());
-        if(Session::has("admin")){
-            $this->assign("icp_count",count(Db::table("icp_list")->select()));
-            $this->assign("icp_0",count(Db::table("icp_list")->whereIn("is_remove",1)->select()));
-            $this->assign("icp_1",count(Db::table("icp_list")->whereIn("is_remove",0)->whereIn("icp_status","正常")->select()));
-            $this->assign("icp_2",count(Db::table("icp_list")->whereIn("is_remove",0)->whereIn("icp_status","失效")->select()));
-            $this->assign("icp_3",count(Db::table("icp_list")->whereIn("is_remove",0)->whereIn("icp_status","违规")->select()));
-            $this->assign("icp_4",count(Db::table("icp_list")->whereIn("is_remove",0)->whereIn("icp_status","待审核")->select()));
-            $this->assign("icp_5",count(Db::table("icp_list")->whereIn("is_remove",0)->whereIn("icp_status","审核未通过")->select()));
-        }else{
-            $this->assign("icp_count",count(Db::table("icp_list")->where("by_user",Session::get("login"))->select()));
-            $this->assign("icp_0",count(Db::table("icp_list")->where("by_user",Session::get("login"))->whereIn("is_remove",1)->select()));
-            $this->assign("icp_1",count(Db::table("icp_list")->where("by_user",Session::get("login"))->whereIn("is_remove",0)->whereIn("icp_status","正常")->select()));
-            $this->assign("icp_2",count(Db::table("icp_list")->where("by_user",Session::get("login"))->whereIn("is_remove",0)->whereIn("icp_status","失效")->select()));
-            $this->assign("icp_3",count(Db::table("icp_list")->where("by_user",Session::get("login"))->whereIn("is_remove",0)->whereIn("icp_status","违规")->select()));
-            $this->assign("icp_4",count(Db::table("icp_list")->where("by_user",Session::get("login"))->whereIn("is_remove",0)->whereIn("icp_status","待审核")->select()));
-            $this->assign("icp_5",count(Db::table("icp_list")->where("by_user",Session::get("login"))->whereIn("is_remove",0)->whereIn("icp_status","审核未通过")->select()));
-        }
+        $this->assign("icp_count",count(Db::table("icp_list")->where("by_user",Session::get("login"))->select()));
+        $this->assign("icp_0",count(Db::table("icp_list")->where("by_user",Session::get("login"))->whereIn("is_remove",1)->select()));
+        $this->assign("icp_1",count(Db::table("icp_list")->where("by_user",Session::get("login"))->whereIn("is_remove",0)->whereIn("icp_status","正常")->select()));
+        $this->assign("icp_2",count(Db::table("icp_list")->where("by_user",Session::get("login"))->whereIn("is_remove",0)->whereIn("icp_status","失效")->select()));
+        $this->assign("icp_3",count(Db::table("icp_list")->where("by_user",Session::get("login"))->whereIn("is_remove",0)->whereIn("icp_status","违规")->select()));
+        $this->assign("icp_4",count(Db::table("icp_list")->where("by_user",Session::get("login"))->whereIn("is_remove",0)->whereIn("icp_status","待审核")->select()));
+        $this->assign("icp_5",count(Db::table("icp_list")->where("by_user",Session::get("login"))->whereIn("is_remove",0)->whereIn("icp_status","审核未通过")->select()));
         return $this->fetch("index/index");
     }
 }
