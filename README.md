@@ -15,13 +15,15 @@
 
 ## 安装教程
 
-1.将根目录下的`database.sql`导入到数据库中
+~~1.将根目录下的`database.sql`导入到数据库中~~
 
-2.修改`config\database.php`文件，填写自己的数据库信息
+~~2.修改`config\database.php`文件，填写自己的数据库信息~~
 
-3.修改站点配置，将运行目录设置为`/public`文件夹
+~~3.修改站点配置，将运行目录设置为`/public`文件夹~~
 
-4.修改伪静态设置，选择`Thinkphp`伪静态配置文件
+~~4.修改伪静态设置，选择`Thinkphp`伪静态配置文件~~
+
+访问`你的网站域名/install.php`并按照提示进行安装
 
 ## 定制教程
 
@@ -30,6 +32,8 @@
 `application\public\view\user`文件夹中存放前端和用户登录以及注册有关的前端文件
 
 `application\public\view\index`文件夹中存放前端和首页、关于以及查询结果有关的前端文件
+
+`application\public\view\install`文件夹中存放安装程序的前端文件
 
 `application\public\view\inc`文件夹中存放前端的各种js以及css引用
 
