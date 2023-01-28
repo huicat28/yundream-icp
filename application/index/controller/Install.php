@@ -7,7 +7,7 @@ class Install extends Controller
 {
     public function index()
     {
-        if (file_exists("..\install")) {
+        if (file_exists("../install")) {
             header("Location: /");
             exit("已经安装");
         }
@@ -15,12 +15,12 @@ class Install extends Controller
     }
     public function next()
     {
-        if (file_exists("..\install")) {
+        if (file_exists("../install")) {
             header("Location: /");
             exit("已经安装");
         }
         try {
-            $_sql = file_get_contents("..\database.sql");
+            $_sql = file_get_contents("../database.sql");
             $_arr = explode(';',$_sql);
             foreach ($_arr as $_value){
                 if($_value == "") continue;
@@ -34,7 +34,7 @@ class Install extends Controller
     }
     public function next2()
     {
-        if (file_exists("..\install")) {
+        if (file_exists("../install")) {
             header("Location: /");
             exit("已经安装");
         }
@@ -42,7 +42,7 @@ class Install extends Controller
     }
     public function next2b()
     {
-        if (file_exists("..\install")) {
+        if (file_exists("../install")) {
             header("Location: /");
             exit("已经安装");
         }

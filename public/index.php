@@ -18,7 +18,7 @@ require __DIR__ . '/../thinkphp/base.php';
 // 支持事先使用静态方法设置Request对象和Config对象
 define("SYS_VERSION","v1.2.0");
 
-if (!file_exists("..\install")) {
+if (!file_exists("../install")) {
     header("Location: /install.php");
     exit("未完成安装");
 }
