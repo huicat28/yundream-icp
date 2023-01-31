@@ -38,27 +38,75 @@
 
 ### 目录结构
 
-`application\public\view\user`文件夹中存放前端和用户登录以及注册有关的前端文件
+#### 用户登录以及注册有关的前端文件
 
-`application\public\view\index`文件夹中存放前端和首页、关于以及查询结果有关的前端文件
+`application\public\view\user`文件夹中存放的内容：
 
-`application\public\view\install`文件夹中存放安装程序的前端文件
+修改`login.html`可以获得一个自己的登录界面
 
-`application\public\view\inc`文件夹中存放前端的各种js以及css引用
+修改`register_0.html`可以获得一个自己的注册提示
 
-`application\user\view\icp`文件夹中存放后台管理的和ICP备案管理有关的页面文件
+修改`register_1.html`可以自定义一个申请备案号的方式
 
-`application\user\view\index`文件夹中存放后台管理主页的页面文件
+修改`register_2.html`可以获得自己定制过的用户注册
 
-`application\user\view\public`文件夹中存放后台管理的导航以及各种js和css引用的页面文件
+修改`register_3.html`可以自定义备案号申请
+
+#### 前端的首页以及查询界面
+
+`application\public\view\index`文件夹中存放：
+
+修改`home.html`可以DIY一个自己的首页
+
+修改`where.html`可以DIY每个备案字段的显示出来的名称
+
+#### 安装程序
+
+`application\public\view\install`文件夹中存放：
+
+这个不会有人闲着没事改吧
+
+#### 各种乱七八糟的引用
+
+`application\public\view\inc`文件夹中存放前端的各种js以及css引用：
+
+修改`head.html`在网站的\<head\>标签里添加内容
+
+修改`foot.html`在网站源码的最后添加内容
+
+#### 后台管理
+
+##### 用户管理
+
+`application\user\view\icp`文件夹中存放后台管理的和ICP备案管理有关的页面文件:
+
+修改`add.html`自定义一个自己的申请备案的页面
+
+修改`index.html`可以自定义一个备案列表
+
+`application\user\view\index`文件夹中存放后台管理主页的页面文件：
+
+修改`index.html`自定义用户的后台的首页
+
+`application\user\view\public`文件夹中存放后台管理的导航以及各种js和css引用的页面文件：
+
+修改`head.html`自定义用户后台的\<head\> ~~（最臃肿的css引用）~~
+
+修改`foot.html`自定义用户后台的结尾 ~~（最臃肿的js引用）~~
+
+##### 管理员后台
+
+还没写呢就急着定制了？
+
+#### 其他资源
 
 `public\favicon.ico`为网站缩略图
 
 `public\static\bg.jpg`为默认的前台背景图
 
-`public\static\yshst.ttf`为默认的前台字体
+`public\static\yshst.ttf`为默认的前台字体（未来开发自定义功能）
 
-`public\static\hmsans.ttf`为默认的后台管理字体
+`public\static\hmsans.ttf`为默认的后台管理字体（未来开发自定义功能）
 
 `public\static\style.css`为默认的样式
 
