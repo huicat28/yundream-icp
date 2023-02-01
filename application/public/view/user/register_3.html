@@ -47,7 +47,7 @@
                 fetch("/user.php/register/end_check",{method:"post",headers: {"Content-Type":"application/x-www-form-urlencoded"},body:`sitename=${site_name}&&sitedesc=${site_desc}&&icpowner=${icp_owner}&&icpurl=${icp_url}&&mainurl=${main_url}&&number={$number}&&userid={$userid}`})
                     .then(res => res.text())
                     .then(function (res){
-                        if (res === "ok") window.open("/where?keyword={$number}","_self");
+                        if (res === "ok") window.open("/index.php/where?keyword={$number}","_self");
                         else document.getElementById("tip_list").innerHTML = "<h5 class=\"tip\">" + res + "</h5>";
                     })
             }
