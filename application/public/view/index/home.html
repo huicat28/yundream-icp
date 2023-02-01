@@ -29,7 +29,7 @@
                 xhr.ontimeout = function (event){
                     document.getElementById("tip_list").innerHTML += "<h5 class=\"tip\">请求超时</h5>";
                 }
-                xhr.open("GET","/has?keyword="+key_input.value);
+                xhr.open("GET","/index.php/has?keyword="+key_input.value);
                 xhr.send();
                 xhr.onreadystatechange = function (){
                     if (xhr.readyState == 4 && xhr.status == 200){
