@@ -7,6 +7,13 @@
 
 ### 提示：本系统仅能用于娱乐性质！！！！！
 
+## 注意！！！
+
+本系统被抛弃，请使用新版前后端分离的系统
+
+[![](https://img.shields.io/badge/后端仓库-new_yundreamicp_api-green?style=flat-square)](https://github.com/huicat28/new_yundreamicp_api)
+[![](https://img.shields.io/badge/前端仓库-还未创建-red?style=flat-square)](https://github.com/)
+
 ## 源码介绍
 
 ![介绍图](https://github.com/huicat28/yundream-icp/blob/master/README.png?raw=true)
