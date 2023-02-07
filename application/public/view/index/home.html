@@ -29,13 +29,13 @@
                 xhr.ontimeout = function (event){
                     document.getElementById("tip_list").innerHTML += "<h5 class=\"tip\">请求超时</h5>";
                 }
-                xhr.open("GET","/has?keyword="+key_input.value);
+                xhr.open("GET","/index.php/has?keyword="+key_input.value);
                 xhr.send();
                 xhr.onreadystatechange = function (){
                     if (xhr.readyState == 4 && xhr.status == 200){
                         document.getElementById("tip_list").innerHTML = "";
                         if(xhr.responseText==="0") document.getElementById("tip_list").innerHTML += "<h5 class=\"tip\" style='color: whitesmoke;'>您查询的ICP备案不存在</h5>";
-                        else if(xhr.responseText === "1") window.open("/where?keyword=" + key_input.value,"_self");
+                        else if(xhr.responseText === "1") window.open("/index.php/where?keyword=" + key_input.value,"_self");
                     }else if(xhr.readyState == 4){
                         document.getElementById("tip_list").innerHTML += "<h5 class=\"tip\">请求出错(" + xhr.status + ")</h5>";
                     }
