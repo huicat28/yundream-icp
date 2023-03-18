@@ -11,6 +11,8 @@
 
 ![介绍图](https://github.com/huicat28/yundream-icp/blob/master/README.png?raw=true)
 
+[演示站点](http://demo.icp.project.whitedream.cn)
+
 本源码为模仿萌国ICP备案系统，目的是让各位可以自己搭建一个自己的“ICP备案”。
 
 本源码完全开源免费，如果您是付费获得的此源码，您就是被骗了。
