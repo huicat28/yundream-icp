@@ -108,7 +108,7 @@
 
 `public\static\hmsans.ttf`为默认的后台管理字体（未来开发自定义功能）
 
-`public\static\style.css`为默认的样式
+`public\static\style.css`存储样式文件，其中有注释，可以自行修改
 
 ### 数据库结构
 
