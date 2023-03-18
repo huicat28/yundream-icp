@@ -9,5 +9,12 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>{$PAGE_TITLE | default=''} - {$SETTING_SITENAME}</title>
     <link rel="stylesheet" href="/static/style.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="application/javascript">
+        function getLocalTime(nS) {
+            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+        }
+
+    </script>
 </head>
 <body class="bg" style="background-image: url('{$SETTING_BGURL}');">

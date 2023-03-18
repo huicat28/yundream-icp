@@ -1,12 +1,12 @@
 {include file='public@inc/head'}
 <div class="nav">
-    <a href="/" class="a_btn">首页</a>
+    <a href="/" class="nav-btn">首页</a>
     {if !$IS_LOGIN}
-    <a href="/user.php/login" class="a_btn">登录</a>
-    <a href="/user.php/register" class="a_btn">申请ICP/注册账号</a>
+    <a href="/user.php/login" class="nav-btn">登录</a>
+    <a href="/user.php/register" class="nav-btn">申请ICP/注册账号</a>
     {else /}
-    <a href="/user.php" class="a_btn">后台管理</a>
-    <a href="/user.php/login/loginout" class="a_btn">离线</a>
+    <a href="/user.php" class="nav-btn">后台管理</a>
+    <a href="/user.php/login/loginout" class="nav-btn">离线</a>
     {/if}
 </div>
 <div class="page">
@@ -24,22 +24,16 @@
         var key_input = document.getElementById("keyword");
         $("#keyword").keydown(function (e){
             if (e.keyCode == 13){
-                var xhr = new XMLHttpRequest();
-                xhr.timeout = 4000;
-                xhr.ontimeout = function (event){
-                    document.getElementById("tip_list").innerHTML += "<h5 class=\"tip\">请求超时</h5>";
-                }
-                xhr.open("GET","/has?keyword="+key_input.value);
-                xhr.send();
-                xhr.onreadystatechange = function (){
-                    if (xhr.readyState == 4 && xhr.status == 200){
-                        document.getElementById("tip_list").innerHTML = "";
-                        if(xhr.responseText==="0") document.getElementById("tip_list").innerHTML += "<h5 class=\"tip\" style='color: whitesmoke;'>您查询的ICP备案不存在</h5>";
-                        else if(xhr.responseText === "1") window.open("/where?keyword=" + key_input.value,"_self");
-                    }else if(xhr.readyState == 4){
-                        document.getElementById("tip_list").innerHTML += "<h5 class=\"tip\">请求出错(" + xhr.status + ")</h5>";
+                fetch("/has?keyword="+key_input.value).then((res) => res.text()).then(function (res){
+                    if(res === "0") document.getElementById("tip_list").innerHTML += "<h5 class=\"tip\" style='color: whitesmoke;'>您查询的ICP备案不存在</h5>";
+                    else if(res === "1") {
+                        fetch(`/get?keyword=`+key_input.value).then((res) => res.json()).then(function(res) {
+                            show_content_alert(res)
+                        });
                     }
-                }
+                }).catch(function (res){
+                    console.log(res)
+                })
             }
         })
         clear_tips();
@@ -47,6 +41,67 @@
             document.getElementById("tip_list").innerHTML = "";
             setTimeout("clear_tips()",5000);
         }
+
+        function show_content_alert(info){
+            var icptime = getLocalTime(info.icp_time)
+            const datacontent = document.createElement('div');
+            if (info.is_remove) {
+                datacontent.innerHTML = `<div class="info">
+                <div class="info-item">
+                    <div class="label">备案时间</div>
+                    <div class="value">${icptime}</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">状态</div>
+                    <div class="value">已删除，备案号保留</div>
+                </div>
+            </div>`;
+                swal({
+                    title: "该备案已撤销",
+                    content: datacontent,
+                    closeOnClickOutside: false,
+                    icon: "error"
+                });
+            }else{
+                datacontent.innerHTML = `<div class="info">
+                <div class="info-item">
+                    <div class="label">网站名称</div>
+                    <div class="value">${info.site_name}</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">网站描述</div>
+                    <div class="value">${info.site_description}</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">网站地址</div>
+                    <div class="value"><a href="${info.site_main_url}">${info.site_icp_url}</a></div>
+                </div>
+                <div class="info-item">
+                    <div class="label">备案号</div>
+                    <div class="value">${info.icp_number}</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">所有人</div>
+                    <div class="value">${info.site_owner}</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">备案时间</div>
+                    <div class="value">${icptime}</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">状态</div>
+                    <div class="value">${info.icp_status}</div>
+                </div>
+            </div>`;
+                swal({
+                    title: "查询结果",
+                    content: datacontent,
+                    closeOnClickOutside: false,
+                    icon: "info"
+                });
+            }
+        }
+
     </script>
 </div>
 {include file='public@inc/foot'}

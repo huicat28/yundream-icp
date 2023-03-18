@@ -14,6 +14,6 @@ namespace think;
 
 // 加载基础文件
 require __DIR__ . '/../thinkphp/base.php';
-define("SYS_VERSION","v1.2.0");
+define("SYS_VERSION","v1.3.0");
 // 执行应用并响应
 Container::get('app')->bind("index/install")->run()->send();

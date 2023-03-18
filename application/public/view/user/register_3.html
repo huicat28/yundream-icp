@@ -7,33 +7,33 @@
             <div>
                 <div>
                     <label for="number">ICP备案号</label>
-                    <input type="text" id="number" class="beautiful-input" disabled value="{$number}">
+                    <input type="text" id="number" class="front-input" disabled value="{$number}">
                 </div>
                 <div>
                     <label for="userid">用户ID</label>
-                    <input type="text" id="userid" class="beautiful-input" disabled value="{$userid}">
+                    <input type="text" id="userid" class="front-input" disabled value="{$userid}">
                 </div>
                 <div>
                     <label for="site_name">网站名称</label>
-                    <input type="text" id="site_name" class="beautiful-input" maxlength="12">
+                    <input type="text" id="site_name" class="front-input" maxlength="12">
                 </div>
                 <div>
                     <label for="site_desc">网站描述</label>
-                    <input type="text" id="site_desc" class="beautiful-input" maxlength="20">
+                    <input type="text" id="site_desc" class="front-input" maxlength="20">
                 </div>
                 <div>
                     <label for="main_url">网站首页链接（以http://或https://开头）</label>
-                    <input type="url" id="main_url" class="beautiful-input" maxlength="30">
+                    <input type="url" id="main_url" class="front-input" maxlength="30">
                 </div>
                 <div>
                     <label for="main_url">网站备案链接（无需填写http://或https://）</label>
-                    <input type="text" id="icp_url" class="beautiful-input" maxlength="30">
+                    <input type="text" id="icp_url" class="front-input" maxlength="30">
                 </div>
                 <div>
                     <label for="main_url">网站所有人</label>
-                    <input type="text" id="icp_owner" maxlength="18">
+                    <input type="text" id="icp_owner" class="front-input" maxlength="18">
                 </div>
-                <button type="button" onclick="reg()">申请</button>
+                <button type="button" class="front-button" onclick="reg()">申请</button>
             </div>
             <div id="tip_list"></div>
         </div>
