@@ -1,0 +1,35 @@
+
+<div id="app">
+    <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg"></div>
+        <nav class="navbar navbar-expand-lg main-navbar">
+            <form class="form-inline mr-auto">
+                <ul class="navbar-nav mr-3">
+                    <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+                </ul>
+            </form>
+        </nav>
+        <div class="main-sidebar sidebar-style-2">
+            <aside id="sidebar-wrapper">
+                <div class="sidebar-brand">
+                    <a>站点后台管理面板</a>
+                </div>
+                <div class="sidebar-brand sidebar-brand-sm">
+                    <a>管理</a>
+                </div>
+                <ul class="sidebar-menu">
+                    <li class="{if ($NAVID==0)}active{/if}"><a href="/admin.php" class="nav-link"><i class="fas fa-home"></i><span>仪表盘</span></a></li>
+                    <li><a href="/user.php" class="nav-link"><i class="fas fa-backward"></i><span>返回用户中心</span></a></li>
+                    <li><a href="/" class="nav-link"><i class="fas fa-backward"></i><span>返回前台</span></a></li>
+                    <li class="menu-header">备案管理</li>
+                    <li class="{if ($NAVID==1)}active{/if}"><a class="nav-link" href="/admin.php/icp"><i class="fas fa-file"></i><span>所有备案</span></a></li>
+                    <li class="{if ($NAVID==2)}active{/if}"><a class="nav-link" href="/admin.php/icp/add"><i class="fas fa-circle"></i><span>新增备案</span></a></li>
+                    <li class="menu-header">备案管理</li>
+                    <li class="{if ($NAVID==3)}active{/if}"><a class="nav-link" href="/admin.php/user"><i class="fas fa-user"></i><span>用户列表</span></a></li>
+                    <li class="menu-header"></li>
+<!--                    <li class="{if ($NAVID==4)}active{/if}"><a class="nav-link" href="/admin.php/settings"><i class="fas fa-cog"></i><span>网站设置</span></a></li>-->
+                </ul>
+            </aside>
+        </div>
+    </div>
+</div>

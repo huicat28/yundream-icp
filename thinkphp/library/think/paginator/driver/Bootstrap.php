@@ -112,7 +112,7 @@ class Bootstrap extends Paginator
         if ($this->hasPages()) {
             if ($this->simple) {
                 return sprintf(
-                    '<ul class="pager">%s %s</ul>',
+                    '<ul class="pagination">%s %s</ul>',
                     $this->getPreviousButton(),
                     $this->getNextButton()
                 );
@@ -136,7 +136,7 @@ class Bootstrap extends Paginator
      */
     protected function getAvailablePageWrapper($url, $page)
     {
-        return '<li><a href="' . htmlentities($url) . '">' . $page . '</a></li>';
+        return '<li class="page-item"><a class="page-link" href="' . htmlentities($url) . '" aria-label="上一页"><span aria-hidden="true">' . $page . '</span></a></li>';
     }
 
     /**
@@ -147,7 +147,7 @@ class Bootstrap extends Paginator
      */
     protected function getDisabledTextWrapper($text)
     {
-        return '<li class="disabled"><span>' . $text . '</span></li>';
+        return '<li class="page-item"><a class="page-link" href="#">' . $text . '</a></li>';
     }
 
     /**
@@ -158,7 +158,7 @@ class Bootstrap extends Paginator
      */
     protected function getActivePageWrapper($text)
     {
-        return '<li class="active"><span>' . $text . '</span></li>';
+        return '<li class="page-item active"><a class="page-link" href="#">' . $text . '</a></li>';
     }
 
     /**

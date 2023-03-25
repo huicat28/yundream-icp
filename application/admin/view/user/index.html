@@ -1,0 +1,84 @@
+{include file='public/head'}
+{include file='public/nav'}
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>用户列表</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>所有</h4>
+                        <div class="card-header-action">
+                            <form method="get">
+                                <div class="input-group">
+                                    <input name="search" type="text" class="form-control" placeholder="搜索用户ID、用户名、显示名称">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>用户ID</th>
+                                    <th>用户名</th>
+                                    <th>显示名称</th>
+                                    <th>加入时间</th>
+                                    <th>用户权限</th>
+                                    <th>邮箱</th>
+                                    <th>QQ</th>
+                                    <th>Number</th>
+                                    <th>操作</th>
+                                </tr>
+                                {volist name="user_list" id="vo"}
+                                    <tr id="user-{$vo.id}">
+                                        <td>{$vo.id}</td>
+                                        <td>{$vo.username}</td>
+                                        <td>{$vo.displayname}</td>
+                                        <td>{php}echo date('Y-m-d H:i:s',$vo["join_time"]);{/php}</td>
+                                        <td><div class="badge" id="icp-type-{$vo.id}">{if $vo.u_type == 0}<span style="color:green">普通用户</span>{elseif $vo.u_type == 1 /}<span style="color:yellow">审核</span>{elseif $vo.u_type == 1 /}<span style="color:red">管理员</span>{/if}</div></td>
+                                        <td>{$vo.email}</td>
+                                        <td>{$vo.qq}</td>
+                                        <td>{$vo.u_number}</td>
+                                        <td><button onclick="change_type({$vo.id})" class="btn btn-info">修改权限</button><button onclick="del({$vo.id})" style="margin-left: 3px;" class="btn btn-danger">删除</button></td>
+                                        <td></td>
+                                    </tr>
+                                {/volist}
+                            </table>
+                            <div style="padding: 10px;">
+                                {php}echo $user_list->render();{/php}
+                            </div>
+                            <script type="application/javascript">
+                                function del(id){
+                                    swal("你确定要删除吗",{
+                                        buttons: {
+                                            cancel: true,
+                                            confirm: {
+                                                text: "确认",
+                                                value: "yes",
+                                            },
+                                        },
+                                    }).then((value) => {
+                                        if(value === "yes") {
+                                            fetch(`/admin.php/user/del?id=${id}`)
+                                            swal("完成","").then(() => {
+                                                document.getElementById("user-"+id).remove()
+                                            })
+                                        }
+                                    });
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{include file='public/foot'}

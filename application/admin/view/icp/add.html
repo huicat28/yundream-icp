@@ -1,0 +1,96 @@
+{include file='public/head'}
+{include file='public/nav'}
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>添加备案</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>备案号</label>
+                            <input type="text" class="form-control" id="icp_number" maxlength="18" oninput="update_number()">
+                            <br />
+                            <h6 class="tip" style="color:cornflowerblue" id="ntip"></h6>
+                        </div>
+                        <div class="form-group">
+                            <label>所属用户ID</label>
+                            <input type="text" class="form-control" id="icp_user" oninput="update_user()">
+                            <br />
+                            <h6 class="tip" style="color:cornflowerblue" id="ntip2"></h6>
+                        </div>
+                        <div class="form-group">
+                            <label>网站名称</label>
+                            <input type="text" class="form-control" id="site_name" maxlength="12">
+                        </div>
+                        <div class="form-group">
+                            <label>网站描述</label>
+                            <input type="text" class="form-control" id="site_desc" maxlength="20">
+                        </div>
+                        <div class="form-group">
+                            <label>网站首页链接（以http://或https://开头）</label>
+                            <input type="text" class="form-control" id="main_url" maxlength="30">
+                        </div>
+                        <div class="form-group">
+                            <label>网站备案链接（无需填写http://或https://）</label>
+                            <input type="text" class="form-control" id="icp_url" maxlength="30">
+                        </div>
+                        <div class="form-group">
+                            <label>网站所有人</label>
+                            <input type="text" class="form-control" id="icp_owner" maxlength="18">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" onclick="reg()" class="btn btn-secondary">申请</button>
+                        </div>
+                        <div id="tip_list"></div>
+                    </div>
+                    <script type="application/javascript">
+                        function update_number(){
+                            var icp_number = document.getElementById("icp_number").value;
+                            fetch(`/user.php/register/number_can?number=${icp_number}`)
+                                .then(res => res.text())
+                                .then(function (res){
+                                    if (res === "0") {
+                                        document.getElementById("ntip").innerHTML = "该备案号可以选择"
+                                    }else if(res === "1"){
+                                        document.getElementById("ntip").innerHTML = "该备案号已经存在"
+                                    }
+                                })
+                        }
+                        function update_user(){
+                            var icp_user = document.getElementById("icp_user").value;
+                            fetch(`/admin.php/icp/add_user_check?id=${icp_user}`)
+                                .then(res => res.text())
+                                .then(function (res){
+                                    if (res === "0") {
+                                        document.getElementById("ntip2").innerHTML = "该用户不存在"
+                                    }else if(res === "1"){
+                                        document.getElementById("ntip2").innerHTML = ""
+                                    }
+                                })
+                        }
+                        function reg(){
+                            var user = document.getElementById("icp_user").value;
+                            var site_name = document.getElementById("site_name").value;
+                            var site_desc = document.getElementById("site_desc").value;
+                            var main_url = document.getElementById("main_url").value;
+                            var icp_url = document.getElementById("icp_url").value;
+                            var icp_owner = document.getElementById("icp_owner").value;
+                            var icp_number = document.getElementById("icp_number").value;
+                            fetch("/admin.php/icp/add_check",{method:"post",headers: {"Content-Type":"application/x-www-form-urlencoded"},body:`sitename=${site_name}&&sitedesc=${site_desc}&&icpowner=${icp_owner}&&icpurl=${icp_url}&&mainurl=${main_url}&&number=${icp_number}&&user=${user}`})
+                                .then(res => res.text())
+                                .then(function (res){
+                                    if (res === "ok") window.open("/admin.php/icp","_self");
+                                    else document.getElementById("tip_list").innerHTML = "<h5 class=\"tip\">" + res + "</h5>";
+                                })
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{include file='public/foot'}

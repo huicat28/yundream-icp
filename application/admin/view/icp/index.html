@@ -1,0 +1,110 @@
+{include file='public/head'}
+{include file='public/nav'}
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>备案列表</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>所有</h4>
+                        <div class="card-header-action">
+                            <form method="get">
+                                <div class="input-group">
+                                    <input name="search" type="text" class="form-control" placeholder="搜索名称、备案号">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>网站名称</th>
+                                    <th>网站主页</th>
+                                    <th>备案域名</th>
+                                    <th>站点所有人</th>
+                                    <th>站点状态</th>
+                                    <th>更新时间</th>
+                                    <th>备案号</th>
+                                    <th>操作</th>
+                                </tr>
+                                {volist name="icp_list" id="vo"}
+                                    <tr id="icp-{$vo.icp_number}">
+                                        <td>{$vo.site_name}</td>
+                                        <td><a href="{$vo.site_main_url}">{$vo.site_main_url}</a></td>
+                                        <td>{$vo.site_icp_url}</td>
+                                        <td>{$vo.site_owner}</td>
+                                        <td><div class="badge" id="icp-status-{$vo.icp_number}">{if $vo.is_remove == 1}<span style="color:red">已删除</span>{else /}{$vo.icp_status}{/if}</div></td>
+                                        <td>{php}echo date('Y-m-d H:i:s',$vo["icp_time"]);{/php}</td>
+                                        <td>{$vo.icp_number}</td>
+                                        <td><button onclick="del({$vo.icp_number})" class="btn btn-warning">撤销</button><button onclick="del_sure({$vo.icp_number})" style="margin-left: 3px;" class="btn btn-danger">永久删除</button></td>
+                                        <td></td>
+                                    </tr>
+                                {/volist}
+                            </table>
+                            <div style="padding: 10px;">
+                                {php}echo $icp_list->render();{/php}
+                            </div>
+                            <script type="application/javascript">
+                                function del(id){
+                                    swal("你确定要删除吗",{
+                                        buttons: {
+                                            cancel: true,
+                                            confirm: {
+                                                text: "确认",
+                                                value: "yes",
+                                            },
+                                        },
+                                    }).then((value) => {
+                                        if(value === "yes") {
+                                            fetch(`/admin.php/icp/del?id=${id}`)
+                                            swal("完成","").then(() => {
+                                                document.getElementById("icp-status-"+id).innerHTML = `<span style="color:red">已删除</span>`;
+                                            })
+                                        }
+                                    });
+                                }
+                                function del_sure(id){
+                                    swal("你确定要永久删除吗？这会删除数据库中的数据。",{
+                                        buttons: {
+                                            cancel: true,
+                                            confirm: {
+                                                text: "确认",
+                                                value: "yes",
+                                            },
+                                        },
+                                    }).then((value) => {
+                                        if(value === "yes") {
+                                            swal("确定要永久删除吗？",{
+                                                buttons: {
+                                                    cancel: true,
+                                                    confirm: {
+                                                        text: "我确定",
+                                                        value: "yes",
+                                                    },
+                                                },
+                                            }).then((value) => {
+                                                if(value === "yes") {
+                                                    fetch(`/admin.php/icp/del_sure?id=${id}`)
+                                                    document.getElementById("icp-"+id).remove()
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{include file='public/foot'}
